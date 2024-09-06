@@ -4,7 +4,7 @@
 
 .game-container {
   margin: 0 auto;
-  max-width: 600px;
+  max-width: 700px;
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 8px;
@@ -50,7 +50,6 @@
 
 .bee.dead {
   color: red;
-  text-decoration: line-through;
 }
 
 .bee-image {
@@ -113,4 +112,24 @@
 
 .reset-button {
   margin-left: 40px;
+}
+
+.line-1 {
+  position: absolute;
+  display: block;
+  height: 50px;
+  width: 5px;
+  background: red;
+  z-index: 2;
+  -webkit-transform: rotate(45deg);
+}
+
+.line-2 {
+  position: absolute;
+  display: block;
+  height: 50px;
+  width: 5px;
+  background: red;
+  z-index: 2;
+  -webkit-transform: rotate(-45deg);
 }

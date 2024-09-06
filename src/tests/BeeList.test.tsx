@@ -21,7 +21,7 @@ describe("BeeList Component", () => {
     render(<BeeList bees={bees} lastHitBeeId={null} />);
     bees.forEach((bee) => {
       expect(
-        screen.getByText(`${bee.type} ${bee.health} - HP`)
+        screen.getByAltText(`${bee.type} ${bee.health} HP`)
       ).toBeInTheDocument();
     });
   });

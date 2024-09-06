@@ -35,10 +35,18 @@ const Bee: React.FC<BeeProps> = ({ bee, lastHitBeeId }) => {
 
   return (
     <div className={`bee ${bee.isAlive ? "alive" : "dead"}`}>
+      {!bee.isAlive && (
+        <div>
+          <div className="line-1"></div>
+          <div className="line-2"></div>
+        </div>
+      )}
+
       <img
         src={beeImages[bee.type]}
         alt={`${bee.type}`}
         className="bee-image"
+        style={{ transform: !bee.isAlive ? "rotate(180deg)" : "" }}
       />
       <div
         style={{
@@ -47,8 +55,9 @@ const Bee: React.FC<BeeProps> = ({ bee, lastHitBeeId }) => {
           alignItems: "center",
         }}
       >
-        <span>
-          {bee.type} {bee.isAlive ? bee.health : "0"} - HP
+        <span style={{ width: "60px" }}>
+          {bee.type}
+          {bee.isAlive ? bee.health : "0"} HP
         </span>
 
         <p>{showDamage && <span className="damage"> -{bee.damage}</span>}</p>
