@@ -1,0 +1,116 @@
+.app {
+  text-align: center;
+}
+
+.game-container {
+  margin: 0 auto;
+  max-width: 600px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.bee-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.queen-section {
+  margin-bottom: 20px;
+}
+
+.worker-drone-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.worker-row,
+.drone-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.bee {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.bee.alive {
+  color: green;
+}
+
+.bee.dead {
+  color: red;
+  text-decoration: line-through;
+}
+
+.bee-image {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 5px;
+}
+
+.hit-button {
+  margin: 20px 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.damage {
+  color: red;
+  font-weight: bold;
+  margin-left: 10px;
+  width: 30px;
+  display: inline-block;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.bee .damage.disappear {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hit-log {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #f0f0f0;
+  position: fixed;
+  top: 103px;
+  right: 20px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.hit-log h3 {
+  margin-top: 0;
+}
+
+.hit-log ul {
+  list-style-type: none;
+  padding: 10px;
+  margin: 0;
+}
+
+.hit-log li {
+  font-size: 14px;
+  padding: 4px 0;
+}
+
+.reset-button {
+  margin-left: 40px;
+}
