@@ -21,6 +21,8 @@ const Game: React.FC = () => {
   const [gameOver, setGameOver] = useState<boolean>(savedState?.gameOver);
   const [lastHitBeeId, setLastHitBeeId] = useState<string | null>(null);
   const [logs, setLogs] = useState<LogEntry[]>(savedState?.logs);
+  const [playerName, setPlayerName] = useState<string>("");
+  const [isNameEntered, setIsNameEntered] = useState<boolean>(false);
 
   useEffect(() => {
     saveGameState({ bees, gameOver, logs });
@@ -37,6 +39,7 @@ const Game: React.FC = () => {
 
     const randomBee = aliveBees[Math.floor(Math.random() * aliveBees.length)];
     setLastHitBeeId(randomBee.id);
+    console.log(randomBee);
 
     const updatedBees = bees.map((bee) =>
       bee.id === randomBee.id
@@ -75,24 +78,66 @@ const Game: React.FC = () => {
     setLastHitBeeId(null);
     setLogs([]);
     clearGameState();
+    setIsNameEntered(false);
+  };
+
+  const handleNameSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (playerName.trim()) {
+      setIsNameEntered(true);
+    }
+    console.log(playerName);
   };
 
   return (
     <div className="app">
-      <HitButton onHit={hitRandomBee} disabled={gameOver} />
-      <button className="reset-button" onClick={resetGame} disabled={gameOver}>
-        reset game
-      </button>
-      <div className="game-container">
-        <h1>The Bee Game</h1>
-        <BeeList bees={bees} lastHitBeeId={lastHitBeeId} />
-        {gameOver && (
-          <div className="game-over">
-            Game Over! <button onClick={resetGame}>Restart</button>
-          </div>
-        )}
-      </div>
-      <HitLog logs={logs} />
+      {!isNameEntered ? (
+        <div className="name-input-container">
+          <h1>Enter Your Name</h1>
+          <h2>Mothafucker</h2>
+          <form onSubmit={handleNameSubmit}>
+            <input
+              type="text"
+              value={playerName}
+              onChange={(e) => setPlayerName(e.target.value)}
+              placeholder="Enter your nameeeee"
+              required
+              className="name-input"
+            />
+            <button type="submit" className="submit-button">
+              Start Game
+            </button>
+            <button>or not</button>
+          </form>
+        </div>
+      ) : (
+        <div className="game-container">
+          <h1>The Bee Game</h1>
+          <h2>player: {playerName}</h2>
+          <HitButton onHit={hitRandomBee} disabled={gameOver} />
+          <button
+            className="reset-button hit-button"
+            onClick={resetGame}
+            disabled={gameOver}
+            style={{
+              background: gameOver ? "#ccc" : "#ff9800",
+              cursor: gameOver ? "not-allowed" : "pointer",
+            }}
+          >
+            Reset
+          </button>
+          <BeeList bees={bees} lastHitBeeId={lastHitBeeId} />
+          {gameOver && (
+            <div className="game-over">
+              Game Over!
+              <button className="hit-button" onClick={resetGame}>
+                Restart
+              </button>
+            </div>
+          )}
+          <HitLog logs={logs} />
+        </div>
+      )}
     </div>
   );
 };

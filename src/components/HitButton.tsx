@@ -7,7 +7,15 @@ interface HitButtonProps {
 
 const HitButton: React.FC<HitButtonProps> = ({ onHit, disabled }) => {
   return (
-    <button onClick={onHit} disabled={disabled} className="hit-button">
+    <button
+      onClick={onHit}
+      disabled={disabled}
+      style={{
+        background: disabled ? "#ccc" : "#ff9800",
+        cursor: disabled ? "not-allowed" : "pointer",
+      }}
+      className="hit-button"
+    >
       Hit!
     </button>
   );

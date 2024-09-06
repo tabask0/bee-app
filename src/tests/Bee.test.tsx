@@ -21,7 +21,7 @@ describe("Bee Component", () => {
       "src",
       "https://png.pngtree.com/png-vector/20230808/ourmid/pngtree-queen-bee-vector-png-image_6901979.png"
     );
-    expect(screen.getByText(/100 - HP/i)).toBeInTheDocument();
+    expect(screen.getByText(/100 HP/i)).toBeInTheDocument();
   });
 
   test("shows damage when the bee is hit", async () => {

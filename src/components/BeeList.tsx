@@ -11,10 +11,11 @@ const BeeList: React.FC<BeeListProps> = ({ bees, lastHitBeeId }) => {
   const queen = bees.find((bee) => bee.type === "Queen");
   const workers = bees.filter((bee) => bee.type === "Worker");
   const drones = bees.filter((bee) => bee.type === "Drone");
+  console.log(lastHitBeeId);
 
   return (
-    <div className="bee-container">
-      <div className="queen-section">
+    <div className="bee-container alert">
+      <div className="queen-section alive">
         {queen && <Bee bee={queen} lastHitBeeId={lastHitBeeId} />}
       </div>
       <div className="worker-drone-section">

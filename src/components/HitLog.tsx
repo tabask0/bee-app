@@ -18,6 +18,7 @@ const HitLog: React.FC<HitLogProps> = ({ logs }) => {
     if (logRef.current) {
       logRef.current.scrollTop = logRef.current.scrollHeight;
     }
+    console.log(logRef.current);
   }, [logs]);
 
   return (

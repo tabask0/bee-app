@@ -8,19 +8,24 @@ interface BeeProps {
 
 const Bee: React.FC<BeeProps> = ({ bee, lastHitBeeId }) => {
   const [showDamage, setShowDamage] = useState(false);
+  console.log(showDamage);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let timeout: NodeJS.Timeout | null = null;
 
     if (bee.id === lastHitBeeId) {
-      setShowDamage(true);
-      timeout = setTimeout(() => setShowDamage(false), 700);
+      setShowDamage(false);
+      setTimeout(() => setShowDamage(true), 0);
+
+      timeout = setTimeout(() => setShowDamage(false), 500);
     } else {
       setShowDamage(false);
     }
 
     return () => {
-      clearTimeout(timeout);
+      if (timeout) {
+        clearTimeout(timeout);
+      }
     };
   }, [lastHitBeeId, bee.id]);
 
@@ -35,10 +40,26 @@ const Bee: React.FC<BeeProps> = ({ bee, lastHitBeeId }) => {
 
   return (
     <div className={`bee ${bee.isAlive ? "alive" : "dead"}`}>
+      {!bee.isAlive && (
+        <div>
+          <div className="line-1"></div>
+          <div className="line-2"></div>
+        </div>
+      )}
+      {showDamage && (
+        <img
+          style={{ position: "absolute", display: "block", zIndex: 1 }}
+          alt="hit-damage"
+          width={50}
+          height={50}
+          src="https://static.vecteezy.com/system/resources/previews/024/801/325/non_2x/punch-comic-explosion-with-red-and-yellow-colors-fighting-text-comic-blast-with-clouds-and-stars-text-bubbles-for-cartoons-free-png.png"
+        />
+      )}
       <img
         src={beeImages[bee.type]}
         alt={`${bee.type}`}
         className="bee-image"
+        style={{ transform: !bee.isAlive ? "rotate(180deg)" : "" }}
       />
       <div
         style={{
@@ -47,11 +68,12 @@ const Bee: React.FC<BeeProps> = ({ bee, lastHitBeeId }) => {
           alignItems: "center",
         }}
       >
-        <span>
-          {bee.type} {bee.isAlive ? bee.health : "0"} - HP
-        </span>
+        <div style={{ width: "60px" }}>
+          {bee.type}
+          <div>{bee.isAlive ? bee.health : "0"} HP</div>
+        </div>
 
-        <p>{showDamage && <span className="damage"> -{bee.damage}</span>}</p>
+        {showDamage && <span className="damage">-{bee.damage}</span>}
       </div>
     </div>
   );

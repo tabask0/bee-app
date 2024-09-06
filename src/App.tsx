@@ -6,6 +6,7 @@ const App: React.FC = () => {
   return (
     <div className="app">
       <Game />
+      <p>this is a paragraph</p>
     </div>
   );
 };
