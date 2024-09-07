@@ -21,8 +21,8 @@ const Game: React.FC = () => {
   const [gameOver, setGameOver] = useState<boolean>(savedState?.gameOver);
   const [lastHitBeeId, setLastHitBeeId] = useState<string | null>(null);
   const [logs, setLogs] = useState<LogEntry[]>(savedState?.logs);
-  const [playerName, setPlayerName] = useState<string>(""); // Player name state
-  const [isNameEntered, setIsNameEntered] = useState<boolean>(false); // State to check if the name is entered
+  const [playerName, setPlayerName] = useState<string>("");
+  const [isNameEntered, setIsNameEntered] = useState<boolean>(false);
 
   useEffect(() => {
     saveGameState({ bees, gameOver, logs });

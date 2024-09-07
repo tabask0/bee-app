@@ -13,17 +13,14 @@ const Bee: React.FC<BeeProps> = ({ bee, lastHitBeeId }) => {
     let timeout: NodeJS.Timeout | null = null;
 
     if (bee.id === lastHitBeeId) {
-      // Reset showDamage to handle consecutive hits correctly
       setShowDamage(false);
-      setTimeout(() => setShowDamage(true), 0); // Delay to re-trigger the effect
+      setTimeout(() => setShowDamage(true), 0);
 
-      // Hide damage after 500ms
       timeout = setTimeout(() => setShowDamage(false), 500);
     } else {
       setShowDamage(false);
     }
 
-    // Cleanup timeout on component unmount or effect rerun
     return () => {
       if (timeout) {
         clearTimeout(timeout);
