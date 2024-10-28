@@ -1,3 +1,4 @@
+import { log } from "console";
 import React, { useEffect, useRef } from "react";
 
 interface LogEntry {
@@ -15,7 +16,7 @@ const HitLog: React.FC<HitLogProps> = ({ logs }) => {
   const logRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (logRef.current) {
+    if (logRef.current && logRef) {
       logRef.current.scrollTop = logRef.current.scrollHeight;
     }
     console.log(logRef.current);
